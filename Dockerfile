@@ -1,22 +1,11 @@
-FROM node:9-alpine
+FROM node:14
 
 # Create app directory
-WORKDIR /usr/src/dostya
-
-# Because the irc library has a git dependency; npm/yarn need git installed; so
-# install it along with dependencies.
-RUN apk update && apk upgrade && apk add --no-cache bash git openssh sqlite
+WORKDIR /usr/src/app
 
 # Install app dependencies
-# Copy over yarn.lock file as well as any unfortunate soul who uses NPM's package-lock.
-
-COPY package*.json ./
-COPY yarn.lock .
-
+COPY package.json yarn.lock ./
 RUN yarn
-
-# If you are building your code for production
-# RUN npm install --only=production
 
 # Bundle app source
 COPY . .
