@@ -1,5 +1,5 @@
 name: Build Docker image
-on: [push, pull_request]
+on: [push]
 jobs:
   push_to_registry:
     name: Build and maybe push Docker image to Docker Hub
